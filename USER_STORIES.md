@@ -8,15 +8,15 @@ Main menu:
 
 View legislator menu:
 - (List) legislators or enter a legislator's name to view an individual record.
--- Individual legislator: Puts name, affiliation, hometown, Prompts to select (All) sessions or an individual session
---- View voting record, sponsored bill success rate, or cross-party voting rate
----- Voting record: List bills (number, name, yea/nay/pnv, pass/fail, date)
----- Sponsored bill success rate:  Puts percentage, List bills (number, name, pass/fail)
----- Cross-party voting rate: Puts percentage, List bills (number, name, pass/fail)
+  - Individual legislator: Puts name, affiliation, hometown, Prompts to select (All) sessions or an individual session
+    - View voting record, sponsored bill success rate, or cross-party voting rate
+    - Voting record: List bills (number, name, yea/nay/pnv, pass/fail, date)
+    - Sponsored bill success rate:  Puts percentage, List bills (number, name, pass/fail)
+    - Cross-party voting rate: Puts percentage, List bills (number, name, pass/fail)
 
 View legislation menu:
 - Enter a bill number (ie HB1000 or SB2000).
--- View name, summary, list of sponsors, session, date it passed
+  - View name, summary, list of sponsors, session, date it passed
 
 # User Types
 
