@@ -6,14 +6,10 @@ class BillController
 
   def view(bill_number)
     puts "I'm looking up #{bill_number} …"
-    legislation = Bill.find_by_bill_number(bill_number)
-    puts legislation.inspect
+    bill = Bill.find_by_bill_number(bill_number)
     status = "Passed or failed"
-    if legislation.exists?
-      puts legislation.bill_number
-      puts legislation.name
-      puts legislation.description
-      puts "#{status} on #{bill.floor_vote_date}"
+    if bill
+      puts "#{bill.bill_number} (#{bill.name}) - #{bill.description}  #{status} #{bill.floor_vote_date}"
     else
       puts "Sorry, there is no bill assigned that number."
     end
