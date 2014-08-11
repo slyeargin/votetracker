@@ -14,10 +14,10 @@
 ActiveRecord::Schema.define(version: 20140810062200) do
 
   create_table "bills", force: true do |t|
-    t.integer  "bill_number"
-    t.text     "name"
-    t.text     "description"
-    t.datetime "floor_vote_date"
+    t.text "bill_number"
+    t.text "name"
+    t.text "description"
+    t.date "floor_vote_date"
   end
 
 end

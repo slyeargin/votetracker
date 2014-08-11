@@ -1,6 +1,7 @@
 # Run from project root via. `ruby data/importer.rb`
 require 'csv'
 require 'active_record'
+require 'date'
 require_relative '../app/models/bill'
 require_relative '../lib/environment'
 
@@ -13,6 +14,10 @@ CSV.foreach(source, headers: true) do |row|
   bill_description = row['description']
   bill_floor_vote_date = row['floor_vote_date']
 
-  Bill.create(bill_number: bill_number, name: bill_name, description: bill_description, floor_vote_date: bill_floor_vote_date)
+  bill = Bill.create(bill_number: bill_number, name: bill_name, description: bill_description, floor_vote_date: bill_floor_vote_date)
   puts "Imported #{bill_number}: #{bill_name}."
+  puts bill.inspect
+  puts row.inspect
 end
+
+puts Bill.all

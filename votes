@@ -11,5 +11,5 @@ end
 
 puts IO.readlines('votetracker.txt')
 
-training_paths_controller = TrainingPathsController.new()
-training_paths_controller.list
+start_menu_controller = StartMenuController.new()
+start_menu_controller.list
