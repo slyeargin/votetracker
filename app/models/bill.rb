@@ -1,7 +1,6 @@
 class Bill < ActiveRecord::Base
-  # have_many :sponsor
-  # has_many :votes
-  # has_many :legislators, through: :votes
+  has_many :bills
+  has_many :sponsors, through: :bills
 
   validates_presence_of :bill_number, :name, :description, :floor_vote_date
 
@@ -11,4 +10,37 @@ class Bill < ActiveRecord::Base
     tally = (yes_votes.count / all_votes.count) * 100
     tally < 50
   end
+
+  def sponsors
+    sponsors = Sponsor.where(["bill_id = ?", self.id]).to_a
+    sponsors.map!.with_index { |sponsor, index|
+      legislator = Legislator.find_by_id(sponsor.legislator_id)
+      if sponsors.size > index + 1 && sponsors.size < 2
+        "#{legislator.name} (#{legislator.party_member(true)} - #{legislator.hometown}) "
+      elsif sponsors.size > index + 1
+        "#{legislator.name} (#{legislator.party_member(true)} - #{legislator.hometown}), "
+      else
+        "and #{legislator.name} (#{legislator.party_member(true)} - #{legislator.hometown})"
+      end
+    }
+    sponsors.join
+  end
+
+  def leaning
+    sponsors = Sponsor.where(["bill_id = ?", self.id]).to_a
+    sponsors.map!.with_index { |sponsor, index|
+      legislator = Legislator.find_by_id(sponsor.legislator_id)
+      legislator.party_affiliation
+    }
+    democratic_count = sponsors.count("Democratic")
+    republican_count = sponsors.count("Republican")
+    if democratic_count == republican_count
+      "Bipartisan"
+    elsif democratic_count > republican_count
+      "Democratic"
+    else
+      "Republican"
+    end
+  end
+
 end

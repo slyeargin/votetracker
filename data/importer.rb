@@ -9,6 +9,7 @@ Environment.environment = "development"
 bills = "data/bills.csv"
 legislators = "data/legislators.csv"
 votes = "data/votes.csv"
+sponsors = "data/sponsors.csv"
 
 CSV.foreach(bills, headers: true) do |row|
   bill_number = row['bill_number']
@@ -38,4 +39,14 @@ CSV.foreach(votes, headers: true) do |row|
 
   vote = Vote.create(bill_number: bill_number, legislator_name: legislator_name, vote_status: vote_status)
   puts "Imported vote #{vote.id}."
+end
+
+CSV.foreach(sponsors, headers: true) do |row|
+  bill_number = row['bill_number']
+  legislator_name = row['legislator_name']
+  bill = Bill.find_by_bill_number(bill_number)
+  legislator = Legislator.find_by_name(legislator_name)
+
+  sponsor = Sponsor.create(bill_id: bill.id, legislator_id: legislator.id)
+  puts "Imported sponsor (#{legislator_name}) for #{bill_number}."
 end

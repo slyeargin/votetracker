@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140811221500) do
+ActiveRecord::Schema.define(version: 20140812095200) do
 
   create_table "bills", force: true do |t|
     t.string "bill_number"
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 20140811221500) do
     t.string  "party_affiliation"
     t.string  "governing_body"
   end
+
+  create_table "sponsors", force: true do |t|
+    t.integer "bill_id"
+    t.integer "legislator_id"
+  end
+
+  add_index "sponsors", ["bill_id"], name: "index_sponsors_on_bill_id"
+  add_index "sponsors", ["legislator_id"], name: "index_sponsors_on_legislator_id"
 
   create_table "votes", force: true do |t|
     t.string "bill_number"

@@ -15,9 +15,7 @@ class LegislatorController
     end
 
     if legislator
-      honorific = (legislator.governing_body == "House") ? "Representative" : "Senator"
-      party_member = (legislator.party_affiliation == "Democratic") ? "Democrat" : legislator.party_affiliation
-      puts "#{honorific} #{legislator.name} is a #{party_member} from #{legislator.hometown} (#{legislator.governing_body} District #{legislator.district_number})."
+      puts "#{legislator.honorific} #{legislator.name} is a #{legislator.party_member} from #{legislator.hometown} (#{legislator.governing_body} District #{legislator.district_number})."
     else
       message = (input_type == "number") ? "Invalid entry." : "There's no legislator with that name."
       puts message

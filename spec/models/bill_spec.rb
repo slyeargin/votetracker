@@ -6,4 +6,5 @@ RSpec.describe Bill do
   it { should validate_presence_of :description }
   it { should validate_presence_of :floor_vote_date }
 
+
 end
