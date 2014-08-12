@@ -16,4 +16,16 @@ class Legislator < ActiveRecord::Base
       party_member = (self.party_affiliation == "Democratic") ? "Democrat" : self.party_affiliation
     end
   end
+
+  def voting_history
+    votes = Vote.where(["legislator_name = ? and vote_status != ?", self.name, "Present"]).to_a
+    if votes.count < 1
+      "Member has not voted."
+    else
+      votes.map { |vote|
+        bill = Bill.find_by_bill_number(vote.bill_number)
+        puts "#{bill.bill_number} (#{bill.name}) - Member voted #{vote.vote_status} - #{bill.status} #{bill.floor_vote_date}"
+      }
+    end
+  end
 end

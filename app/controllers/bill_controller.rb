@@ -7,8 +7,7 @@ class BillController
   def view(bill_number)
     bill = Bill.find_by_bill_number(bill_number)
     if bill
-      status = bill.passed? ? "Passed" : "Failed"
-      puts "#{bill.bill_number} (#{bill.name}) - #{bill.description}  #{status} #{bill.floor_vote_date}"
+      puts "#{bill.bill_number} (#{bill.name}) - #{bill.description}  #{bill.status} #{bill.floor_vote_date}"
       puts "Sponsored by #{bill.sponsors}"
       puts "Bill leans #{bill.leaning}"
     else

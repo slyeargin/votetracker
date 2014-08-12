@@ -16,6 +16,12 @@ class LegislatorController
 
     if legislator
       puts "#{legislator.honorific} #{legislator.name} is a #{legislator.party_member} from #{legislator.hometown} (#{legislator.governing_body} District #{legislator.district_number})."
+      puts "Would you like to view this legislator's …"
+      puts "1. Voting record"
+      puts "2. Bill sponsorship success rate"
+      puts "3. Partisanship rating"
+      puts "You can also (return) to the start menu or (exit) the program."
+      Router.navigate_legislator_record_menu(self, legislator)
     else
       message = (input_type == "number") ? "Invalid entry." : "There's no legislator with that name."
       puts message
@@ -31,6 +37,13 @@ class LegislatorController
     end
     puts "Which legislator's record would you like to view?"
     Router.navigate_legislator_menu(self)
+  end
+
+  def get_vote_history(legislator)
+    legislator.voting_history
+  end
+
+  def get_sponsorship_success(legislator)
   end
 
   private

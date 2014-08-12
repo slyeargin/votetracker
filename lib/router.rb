@@ -29,16 +29,23 @@ class Router
     end
   end
 
-  # def self.navigate_training_paths_menu(training_paths_controller)
-  #   command = clean_gets
-  #
-  #   case command
-  #   when "add"
-  #     training_paths_controller.add
-  #   when /\d+/
-  #     training_paths_controller.view(command.to_i)
-  #   else
-  #     puts "I don't know the '#{command}' command."
-  #   end
-  # end
+  def self.navigate_legislator_record_menu(legislator_controller, legislator)
+    command = clean_gets
+
+    case command
+    when "1"   # voting record
+      legislator_controller.get_vote_history(legislator)
+    when "2"   # sponsorship success
+      legislator_controller.get_sponsorship_success(legislator)
+    when "3"   # bipartisanship
+      legislator_controller.get_partisanship(legislator)
+    when "return"
+      start_menu_controller = StartMenuController.new()
+      start_menu_controller.list
+    when "exit"
+      puts "Goodbye."
+    else
+      puts "Invalid input: '#{command}'."
+    end
+  end
 end

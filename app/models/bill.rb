@@ -11,6 +11,10 @@ class Bill < ActiveRecord::Base
     tally < 50
   end
 
+  def status
+    self.passed? ? "Passed" : "Failed"
+  end
+
   def sponsors
     sponsors = Sponsor.where(["bill_id = ?", self.id]).to_a
     sponsors.map!.with_index { |sponsor, index|
