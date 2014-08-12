@@ -8,7 +8,7 @@ Main menu:
 
 View legislator menu:
 - (List) legislators or enter a legislator's name to view an individual record.
-  - Individual legislator: Puts name, affiliation, hometown, Prompts to select (All) sessions or an individual session
+  - Individual legislator: Puts name, affiliation, hometown, governing body
     - View voting record, sponsored bill success rate, or cross-party voting rate
     - Voting record: List bills (number, name, yea/nay/pnv, pass/fail, date)
     - Sponsored bill success rate:  Puts percentage, List bills (number, name, pass/fail)
@@ -44,7 +44,6 @@ Acceptance Criteria:
 * Builds on the individual legislator's profile
 * Constituent navigates through the menu and enters a legislator's name to view his/her details
 * Displays the legislator in question
-* Prompts to select the timeframe (all time or specific session)
 * Lists bills (number, name, yea/nay/pnv, pass/fail, date)
 
 ## Constituent views an individual legislator's sponsored-bill success rate
@@ -57,7 +56,6 @@ Acceptance Criteria:
 * Builds on the individual legislator's profile
 * Constituent navigates through the menu and enters a legislator's name to view his/her details
 * Displays the legislator in question
-* Prompts to select the timeframe (all time or specific session)
 * Puts percentage (passed sponsored bills/sponsored bills)
 * Displays sponsored bills (number, name, pass/fail)
 
@@ -71,7 +69,6 @@ Acceptance Criteria:
 * Builds on the individual legislator's profile
 * Constituent navigates through the menu and enters a legislator's name to view his/her details
 * Displays the legislator in question
-* Prompts to select the timeframe (all time or specific session)
 * Puts percentage (yea on bills put forth by sponsor of opposite party/all yeas)
 * Displays cross-party bills (number, name, pass/fail)
 
