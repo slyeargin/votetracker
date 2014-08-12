@@ -4,6 +4,11 @@ class Bill < ActiveRecord::Base
 
   validates_presence_of :bill_number, :name, :description, :floor_vote_date
 
+  def info
+    puts "#{self.bill_number} (#{self.name}) - #{self.description}  #{self.status} #{self.floor_vote_date}"
+    puts "Sponsored by #{self.sponsors}"
+  end
+
   def passed?
     yes_votes = Vote.where(["bill_number = ? and vote_status = ?", self.bill_number, "yes"])
     all_votes = Vote.where(["bill_number = ? and vote_status != ?", self.bill_number, "present"])

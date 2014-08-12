@@ -15,17 +15,21 @@ class LegislatorController
     end
 
     if legislator
-      puts "#{legislator.honorific} #{legislator.name} is a #{legislator.party_member} from #{legislator.hometown} (#{legislator.governing_body} District #{legislator.district_number})."
-      puts "Would you like to view this legislator's …"
-      puts "1. Voting record"
-      puts "2. Bill sponsorship success rate"
-      puts "3. Partisanship rating"
-      puts "You can also (return) to the start menu or (exit) the program."
-      Router.navigate_legislator_record_menu(self, legislator)
+      puts legislator.info
+      self.view_legislator_record(legislator)
     else
       message = (input_type == "number") ? "Invalid entry." : "There's no legislator with that name."
       puts message
     end
+  end
+
+  def view_legislator_record(legislator)
+    puts "Would you like to view this legislator's …"
+    puts "1. Voting record"
+    puts "2. Bill sponsorship success rate"
+    puts "3. Partisanship rating"
+    puts "You can also (return) to the start menu or (exit) the program."
+    Router.navigate_legislator_record_menu(self, legislator)
   end
 
   def list
@@ -33,7 +37,7 @@ class LegislatorController
     puts "Legislators"
     puts "=============="
     legislators.each_with_index do |legislator, index|
-      puts "#{index + 1}. #{legislator.name}"
+      puts "#{index + 1}. #{legislator.name} - #{legislator.governing_body}"
     end
     puts "Which legislator's record would you like to view?"
     Router.navigate_legislator_menu(self)
@@ -41,9 +45,20 @@ class LegislatorController
 
   def get_vote_history(legislator)
     legislator.voting_history
+    puts "=============="
+    self.view_legislator_record(legislator)
   end
 
   def get_sponsorship_success(legislator)
+    legislator.success_rate
+    puts "=============="
+    self.view_legislator_record(legislator)
+  end
+
+  def get_partisanship(legislator)
+    legislator.partisanship
+    puts "=============="
+    self.view_legislator_record(legislator)
   end
 
   private
