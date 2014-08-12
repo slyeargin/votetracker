@@ -11,6 +11,7 @@ class StartMenuController
   def view(path_number)
     if path_number == 1
       legislator_controller = LegislatorController.new()
+      legislator_controller.menu
     elsif path_number == 2
       bill_controller = BillController.new()
       bill_controller.menu

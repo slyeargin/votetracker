@@ -19,6 +19,16 @@ class Router
     end
   end
 
+  def self.navigate_legislator_menu(legislator_controller)
+    command = clean_gets
+    case command
+    when "list"
+      legislator_controller.list
+    else
+      legislator_controller.view_legislator(command)
+    end
+  end
+
   # def self.navigate_training_paths_menu(training_paths_controller)
   #   command = clean_gets
   #
