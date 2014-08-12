@@ -5,6 +5,11 @@ RSpec.describe "Viewing the bill menu", :integration do
   bill_floor_vote_date = Date.strptime("3/13/2014", '%m/%d/%Y')
 
   let!(:bill1){ Bill.create(bill_number: bill_number, name: bill_name, description: bill_description, floor_vote_date: bill_floor_vote_date) }
+  let!(:vote1){ Vote.create(bill_number: "HB2001", legislator_name: "Fletcher Bray", vote_status: "yes")}
+  let!(:vote2){ Vote.create(bill_number: "HB2001", legislator_name: "Prescott Griffith", vote_status: "yes")}
+  let!(:vote3){ Vote.create(bill_number: "HB2001", legislator_name: "Joan Neal", vote_status: "no")}
+  let!(:vote4){ Vote.create(bill_number: "HB2001", legislator_name: "Elliott Guy", vote_status: "yes")}
+  let!(:vote5){ Vote.create(bill_number: "HB2001", legislator_name: "MacKensie Tanner", vote_status: "present")}
 
   context "Choose to view bills" do
     let(:output){ run_votetracker_with_input('2') } # View bills
@@ -17,7 +22,7 @@ RSpec.describe "Viewing the bill menu", :integration do
   context "Choose to view a specific bill" do
     let(:output){ run_votetracker_with_input('2', 'HB2001') } # View bills
     it "should show the bill" do
-      expected = "HB2001 (The Everything Act) - It does everything, but fixes nothing.  Passed or failed 2014-03-13"
+      expected = "HB2001 (The Everything Act) - It does everything, but fixes nothing.  Passed 2014-03-13"
       expect(output).to include(expected)
     end
     # it "shouldn't list any other bills" do

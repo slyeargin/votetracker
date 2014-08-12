@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140811134200) do
+ActiveRecord::Schema.define(version: 20140811221500) do
 
   create_table "bills", force: true do |t|
     t.string "bill_number"
@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 20140811134200) do
     t.integer "district_number"
     t.string  "party_affiliation"
     t.string  "governing_body"
+  end
+
+  create_table "votes", force: true do |t|
+    t.string "bill_number"
+    t.string "legislator_name"
+    t.string "vote_status"
   end
 
 end

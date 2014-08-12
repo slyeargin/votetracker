@@ -8,6 +8,7 @@ require_relative '../lib/environment'
 Environment.environment = "development"
 bills = "data/bills.csv"
 legislators = "data/legislators.csv"
+votes = "data/votes.csv"
 
 CSV.foreach(bills, headers: true) do |row|
   bill_number = row['bill_number']
@@ -28,4 +29,13 @@ CSV.foreach(legislators, headers: true) do |row|
 
   legislator = Legislator.create(name: legislator_name, hometown: legislator_hometown, district_number: legislator_district_number, party_affiliation: legislator_party_affiliation, governing_body: legislator_governing_body)
   puts "Imported information for #{legislator.name}."
+end
+
+CSV.foreach(votes, headers: true) do |row|
+  bill_number = row['bill_number']
+  legislator_name = row['legislator_name']
+  vote_status = row['vote_status']
+
+  vote = Vote.create(bill_number: bill_number, legislator_name: legislator_name, vote_status: vote_status)
+  puts "Imported vote #{vote.id}."
 end
