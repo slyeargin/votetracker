@@ -5,6 +5,18 @@ RSpec.describe "Viewing the legislator menu", :integration do
   }
   let!(:elected3){ Legislator.create(name: "Yuri Hamilton", hometown: "Smyrna", district_number: "4", party_affiliation: "Republican", governing_body: "Senate")
  }
+ let!(:elected4){ Legislator.create(name: "Alyssa Miles", hometown: "Knoxville", district_number: "7", party_affiliation: "Republican", governing_body: "Senate")
+}
+  let!(:elected5){ Legislator.create(name: "Myra Henderson", hometown: "Memphis", district_number: "2", party_affiliation: "Democratic", governing_body: "Senate")}
+
+ let!(:bill1){ Bill.create(bill_number: "SB1234", name: "Wine in Grocery Stores", description: "Because it makes sense.", floor_vote_date: Date.strptime('3/17/2014', '%m/%d/%Y'))}
+ let!(:bill2){ Bill.create(bill_number: "SB1235", name: "Nashville Has to Ask", description: "Nashville has to get permission first for everything.", floor_vote_date: Date.strptime('3/18/2014', '%m/%d/%Y'))}
+
+ let!(:vote1){ Vote.create(bill_number: "SB1234", legislator_name: "Olivia Jenkins", vote_status: "yes") }
+ let!(:vote2){ Vote.create(bill_number: "SB1235", legislator_name: "Olivia Jenkins", vote_status: "no") }
+ let!(:vote3){ Vote.create(bill_number: "SB1235", legislator_name: "Berk Johns", vote_status: "yes") }
+ let!(:vote4){ Vote.create(bill_number: "SB1235", legislator_name: "Yuri Hamilton", vote_status: "yes") }
+ # let!(:vote5){ Vote.create(bill_number: "SB1234", legislator_name: "Alyssa Miles", vote_status: "yes") }
 
   context "Choose to view a legislator's record" do
     let(:output){ run_votetracker_with_input('1') } # View legislators
@@ -17,7 +29,7 @@ RSpec.describe "Viewing the legislator menu", :integration do
   context "Choose to view a list" do
     let(:output){ run_votetracker_with_input('1', 'list') } # View list
     it "should show a list" do
-      expected = "\n==============\nLegislators\n==============\n1. Olivia Jenkins\n2. Berk Johns\n3. Yuri Hamilton\n"
+      expected = "\n==============\nLegislators\n==============\n1. Olivia Jenkins - Senate\n2. Berk Johns - Senate\n3. Yuri Hamilton - Senate\n"
       expect(output).to include(expected)
     end
   end

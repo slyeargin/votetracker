@@ -1,5 +1,4 @@
 class Sponsor < ActiveRecord::Base
-  belongs_to :legislators
-  belongs_to :bills
+  validates_presence_of :bill_id, :legislator_id, :vote_status
 
 end
