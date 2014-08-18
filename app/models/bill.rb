@@ -12,8 +12,8 @@ class Bill < ActiveRecord::Base
   def passed?
     yes_votes = Vote.where(["bill_number = ? and vote_status = ?", self.bill_number, "yes"])
     all_votes = Vote.where(["bill_number = ? and vote_status != ?", self.bill_number, "present"])
-    tally = (yes_votes.count / all_votes.count) * 100
-    tally < 50
+    tally = (Float(yes_votes.count) / Float(all_votes.count)) * 100
+    tally > 50
   end
 
   def status

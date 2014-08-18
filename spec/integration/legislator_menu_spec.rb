@@ -56,4 +56,19 @@ RSpec.describe "Viewing the legislator menu", :integration do
     end
   end
 
+  context "Choose to view a legislator's voting record" do
+    let(:output){ run_votetracker_with_input('1', 'Olivia Jenkins', '1') } # View legislator
+    it "should show a specific legislator's voting record" do
+      expected1 = "Would you like to view this legislator's …\n1. Voting record\n2. Bill sponsorship success rate\n3. Partisanship rating\nYou can also (return) to the start menu or (exit) the program."
+      expected2 = "==============\nOlivia Jenkins (D - Chattanooga) - Voting History\nSB1234 (Wine in Grocery Stores) - Member voted yes - Passed 2014-03-17\nSB1235 (Nashville Has to Ask) - Member voted no - Passed 2014-03-18\n=============="
+      expect(output).to include(expected1)
+      expect(output).to include(expected2)
+    end
+  end
+
+# let!(:sponsor1){ Sponsor.create(bill_id: bill1.id, legislator_id: elected1.id)}
+# let!(:sponsor2){ Sponsor.create(bill_id: bill1.id, legislator_id: elected4.id)}
+# let!(:sponsor3){ Sponsor.create(bill_id: bill1.id, legislator_id: elected5.id)}
+# let!(:sponsor4){ Sponsor.create(bill_id: bill1.id, legislator_id: elected2.id)}
+# let!(:sponsor5){ Sponsor.create(bill_id: bill2.id, legislator_id: elected3.id)}
 end

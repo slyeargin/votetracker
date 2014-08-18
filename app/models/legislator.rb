@@ -34,7 +34,7 @@ class Legislator < ActiveRecord::Base
           cross_count += 1
         end
       }
-      rate = (cross_count.to_f / votes.count.to_f) * 100
+      rate = 100 - ((cross_count.to_f / votes.count.to_f) * 100)
       puts "Member has a #{rate.to_i}% partisanship rating."
     end
   end
